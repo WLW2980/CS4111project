@@ -1,0 +1,69 @@
+{%extends 'base.html'%}
+{%block title%}
+{{usr}}
+{%endblock%}
+
+{%block content%}
+<html>
+<head>
+    <title>Welcome to your personal page!</title>
+    <style>
+        .welcome {
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome">
+        Welcome {{ usr }}!
+        <table class="table table-hover table-dark">
+            <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Departure City</th>
+                 <th scope="col">Arrival City</th>
+                 <th scope="col">Flight</th>
+            </tr>
+            </thead>
+             <tbody>
+                         {% for row in travel %}
+                        <tr>
+                            <td>{{ row[0] }}</td>
+                            <td>{{row[1]}}</td>
+                            <td>{{ row[2] }}</td>
+                            <td>{{ row[3] }}</td>
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+        </table>
+
+    </div>
+    <!-- add other user-specific content here -->
+</body>
+
+<body>
+<div style="font-size: 36px;" id="text"></div>
+<script>
+
+  var str = 'Hi,{{usr}},your unique ID is :{{preference_re[0][0]}}, According to your preference records, Usually,You  like to travel by {{preference_re[1]}} and travel for {{preference_re[2]}}. You love the destinations with {{preference_re[3]}} climate. You set your budget around:{{preference_re[4]}} since you like to dwell in {{preference_re[5]}} ! The longest duration of flight you can tolerate is {{preference_re[6]}} hr. Up to now, your favorite airline company is {{book[0][0]}} and you have booked {{book[0][1]}} time(s)!'
+  var i = 0;
+  function typing(){
+    var divTyping = document.getElementById('text');
+    if (i <= str.length) {
+      divTyping.innerHTML = str.slice(0, i++) + '_';
+      setTimeout('typing()', 20);
+    }
+    else{
+      divTyping.innerHTML = str;
+    }
+  }
+  typing();
+</script>
+</body>
+</html>
+{%endblock%}

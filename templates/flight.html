@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Find a Destination</title>
+	<link rel="stylesheet" type="text/css" href="static/plane.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+	<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="//code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<h1>Find a Flight</h1>
+		</div>
+		<div class="search-form">
+			<form method="post">
+				<label for="date-start">Start Date:</label>
+				<input type="text" id="date-start" name="date-start">
+				<label for="date-end">End Date:</label>
+				<input type="text" id="date-end" name="date-end">
+				<label for="airline-size">Airplane Size:</label>
+				<select id="airline-size" name="airline-size" >
+					<option value="small">small</option>
+					<option value="medium">medium</option>
+					<option value="large">large</option>
+				</select>
+				<label for="max-price">Max Price:</label>
+				<input type="number" id="max-price" name="max-price" min="100" max="100000" value="100000">
+				<input type="submit" value="Search">{{error}}
+			</form>
+		</div>
+	</div>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Flight ID</th>
+      <th>Route</th>
+      <th>Date/Time</th>
+      <th>Duration</th>
+      <th>Price</th>
+      <th>Size</th>
+      <th>Age</th>
+      <th>Aircrew</th>
+      <th>Airline</th>
+      <th>Book</th>
+    </tr>
+  </thead>
+  <tbody>
+  {%for item in re%}
+  <tr>
+	  <td> {{item[0]}}</td>
+	  <td> {{item[1]}}</td>
+	  <td> {{item[2]}}</td>
+	  <td> {{item[3]}}</td>
+	  <td> {{item[4]}}</td>
+	  <td> {{item[5]}}</td>
+	  <td> {{item[6]}}</td>
+	  <td> {{item[7]}}</td>
+	  <td> {{item[8]}}</td>
+	  <td><button id="book-btn" style="background-color: green; color: white;">Book</button></td>
+  </tr>
+  {%endfor%}
+    <!-- Add more rows for other flights -->
+  </tbody>
+</table>
+
+<!-- Confirmation dialog box -->
+
+
+
+<script>
+
+  const bookButton = document.getElementById('book-btn');
+
+  bookButton.addEventListener('click', () => {
+    const name = prompt('Please enter your name:');
+    const password = prompt('Please enter your password:');
+    const airline = prompt('Please enter your airline:');
+
+    const confirmBooking = confirm(`Please confirm your booking details:
+      Name: ${name}
+      Airline: ${airline}`);
+
+    if (confirmBooking) {
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', '/book');
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.onreadystatechange = function() {
+        if (this.readyState === XMLHttpRequest.DONE) {
+          if (this.status === 200) {
+            window.alert('Booking successful');
+          } else if (this.status === 401) {
+            window.alert('Wrong password');
+          } else {
+            window.alert('Error');
+          }
+        }
+      };
+      xhr.send(`name=${name}&password=${password}&airline=${airline}`);
+    }
+  });
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+	<div class="plane-animation"></div>
+	<script>
+		$(function() {
+			$("#date-range").datepicker({
+				dateFormat: "yy-mm-dd",
+				range: "period",
+				changeMonth: true,
+				changeYear: true,
+				onSelect: function(selectedDate) {
+					$("#date-range").val(selectedDate);
+				}
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+
+{% extends "base1.html" %}{% block title %}Sign Up{% endblock %}{% block content %}
+
+<form method="POST">
+    <h3 align="center">Sign Up</h3>
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input class="form-control" type="text" id="username" name="username" placeholder="Enter username" required>
+        </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input class="form-control" type="email" id="email" name="email" placeholder="Enter email" required>
+        </div>
+
+    <div class="form-group">
+        <label for="password1">Password:</label>
+        <input class="form-control" type="password" id="password1" name="password1" placeholder="Enter password" required>
+        </div>
+     <div class="form-group">
+        <label for="password2">Password (confirm):</label>
+        <input class="form-control" type="password" id="password2" name="password2" placeholder="Confirm password" required>
+        </div>
+
+    <button type="button" onclick="toggleExpand()">Additional Information</button>
+        <div id="expand-section" class="hidden">
+            <div>
+          <label  for="age">Age:</label>
+          <input class="form-input" type="number" id="age" name="age" placeholder="Choose age">
+          <label class="form-label" for="gender">Gender:</label>
+          <select class="form-input" id="gender" name="gender" placeholder="Choose gender">
+            <option value="male">male</option>
+            <option value="female">female</option>
+            <option value="other">other</option>
+          </select></div><div>
+          <label  for="phone">Phone:</label>
+          <input class="form-control" type="tel" id="phone" name="phone" placeholder="Enter Phone Number">
+          <label for="address">Address:</label>
+          <input class="form-control" type="text" id="address" name="address" placeholder="Enter Address (including city)">
+          <label  for="revenue">Annual Revenue$:</label>
+          <input class="form-control" type="number" id="revenue" name="revenue" placeholder="Enter Revenue">
+          <label  for="occupation">Occupation:</label>
+          <input class="form-control" type="text" id="occupation" name="occupation" placeholder="Enter occupation">
+          <label  for="Budget">Budget:</label>
+          <input class="form-control" type="number" id="Budget" name="Budget" placeholder="Enter Budget">
+        </div><div>
+           <label  for="Travel Duration">Travel Duration(days):</label>
+          <input class="form-input" type="number" id="Travel Duration" name="Travel Duration" placeholder="Enter Travel Duration">
+          <label class="form-label" for="Climate">Climate:</label>
+          <select class="form-input" id="Climate" name="Climate" placeholder="Choose preferred Climate">
+            <option value="warm">Warm</option>
+            <option value="cold">Cold</option>
+          </select></div><div>
+          <label class="form-label" for="purpose">Purpose of Travel:</label>
+          <select class="form-input" id="purpose" name="purpose" placeholder="Choose Purpose of Travel">
+            <option value="business">Business</option>
+            <option value="education">Education</option>
+            <option value="leisure">Leisure</option>
+          </select></div><div>
+           <label class="form-label" for="accomodation">Accomodation:</label>
+          <select class="form-input" id="accomodation" name="accomodation" placeholder="Choose preferred accomodation">
+            <option value="hotel">Hotel</option>
+            <option value="airbnb">Airbnb</option>
+          </select></div><div>
+            <label class="form-label" for="travelfollowers">Travel Followers:</label>
+          <select class="form-input" id="travelfollowers" name="travelfollowers" placeholder="Do you travel with other followers?">
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+          </select></div></div>
+
+
+    <br />
+    <button type="submit" class="btn btn-primary" >Submit</button>
+    {% if error1 %}
+    <p style="color:red">{{ error1 }}</p>
+    {% endif %}
+{% if error2 %}
+    <p style="color:red">{{ error2 }}</p>
+    {% endif %}
+{% if succ %}
+    <p style="color:red">{{ succ }}</p>
+    {% endif %}
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,358 @@
+{%extends 'base1.html'%}
+{%block title%}
+Traveling
+{%endblock%}
+
+{%block content%}
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <style>
+      .chart-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 900vw;
+
+  }
+  .pie{
+   position: absolute;
+    bottom: 50%;
+    left: 100%;
+    transform: translateX(-50%);
+  }
+
+   .bar {
+    position: absolute;
+    bottom: 0;
+    left: 90%;
+    transform: translateX(-50%);
+  }
+
+		body {
+		    position: fixed;
+	        top: 0;
+	        left: 0;
+	        width: 100%;
+	        height: 100%;
+	        z-index: -0;
+			background-image: url("https://cdn.dribbble.com/users/740477/screenshots/2964730/plane_dribbble.gif");
+			background-size: cover;
+			background-repeat: no-repeat;
+
+		}
+
+        body {
+            font-size: 12px;
+            line-height: 24px;
+            text-align: center;
+        }
+
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a img {
+            border: none;
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #ff0000;
+        }
+
+        #mooc {
+            width: 399px;
+            border: 5px solid #ababab;
+            -moz-border-radius: 15px;
+            -webkit-border-radius: 15px;
+            border-radius: 15px;
+            box-shadow: 2px 2px 10px #ababab;
+            margin: 600px auto 5;
+            text-align: left;
+            position: absolute;
+			bottom: 50%;
+			left: 0;
+        }
+
+        #moocTitle {
+            height: 62px;
+            overflow: hidden;
+            font-size: 26px;
+            line-height: 62px;
+            padding-left: 30px;
+            /* Firefox */
+            background-image: -moz-linear-gradient(top, #f05e6f, #c9394a);
+            /* Saf4+, Chrome */
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f05e6f), color-stop(1, #c9394a));
+            /* IE*/
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8fa1ff', endColorstr='#f05e6f', GradientType='0');
+            border: 1px solid ##f05e6f;
+            /* Gecko browsers */
+            -moz-border-radius: 8px 8px 0 0;
+            /* Webkit browsers */
+            -webkit-border-radius: 8px 8px 0 0;
+            border-radius: 8px 8px 0 0;
+            color: #fff;
+            position: relative;
+        }
+
+        #moocTitle a {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            display: inline;
+            color: #fff;
+            font-size: 12px;
+            line-height: 24px;
+        }
+
+        #moocBot {
+            width: 399px;
+            height: 10px;
+            overflow: hidden;
+        }
+
+        #moocBox {
+            height: 144px;
+            width: 335px;
+            margin-left: 25px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        #mooc ul li {
+            height: 24px;
+        }
+
+        #mooc ul li a {
+            width: 180px;
+            float: left;
+            display: block;
+            overflow: hidden;
+            text-indent: 15px;
+            height: 24px;
+            color:#33FFFF
+        }
+
+        #mooc ul li span {
+            float: right;
+            color: #999;
+        }
+
+         .textbox {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    padding: 20px;
+
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    color: 3361FF;
+    text-align: center;
+  }
+  .textbox h2 {
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #0A0B0B;
+
+    text-transform: uppercase;
+  }
+  .textbox p {
+    margin: 0 0 10px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #3361FF;
+  }
+   .red {
+    color: red;
+  }
+    </style>
+</head>
+
+
+<div style="text-align: center;">
+  <h1 style="font-family: 'Helvetica Neue', sans-serif; font-size: 50px; color: #FFC300;">TRAVELER</h1>
+</div>
+<body>
+    <div id="mooc">
+        <h3 id="moocTitle">
+            Recent Traveling Policy<a href="https://weather.com/" target="_self">>>weather</a>
+        </h3>
+
+        <div id="moocBox">
+            <ul id="con1">
+                 {% for row in policy %}
+                <li>
+                    <a href="#">{{row[0]}}   {{row[1]}}-->{{row[2]}}</a>
+                     <span>{{row[3]}}     </span>
+
+
+                </li>
+                {% endfor %}
+
+
+            </ul>
+            <ul id="con2"></ul>
+        </div>
+    </div>
+    <script type="text/javascript">
+        //获取滚动列表容器
+        var area = document.getElementById('moocBox');
+        //获取列表1
+        var con1 = document.getElementById('con1');
+        //获取空列表2
+        var con2 = document.getElementById('con2');
+        //设定定时器执行时间间隔
+        var speed = 50;
+
+        //设定向上滚动变量
+        area.scrollTop = 0;
+
+        //复制列表1的内容给列表2
+        con2.innerHTML = con1.innerHTML;
+
+        //向上滚动函数
+        function scrollUp() {
+            //当滚动列表向滚动的高度大于等于列表自身的高度时
+            if (area.scrollTop >= con1.scrollHeight) {
+                //将列表滚动高度归零，重新开始滚
+                area.scrollTop = 0;
+                //否则
+            } else {
+                //继续滚
+                area.scrollTop++;
+            }
+        }
+
+        //存储定时器
+        var myScroll = setInterval("scrollUp()", speed);
+
+        //当鼠标移入的时候，清除定时器
+        area.onmouseover = function () {
+            clearInterval(myScroll);
+        }
+        //当鼠标移开的时候，启动定时器
+        area.onmouseout = function () {
+            myScroll = setInterval("scrollUp()", speed);
+        }
+    </script>
+</body>
+
+<div class="textbox">
+  <h2>Up to Now, we have:</h2>
+  <p>Registered customers:<span class="red">{{num_cust}}</span></p>
+  <p>Traveling Times: <span class="red">{{Trav_times}}</span></p>
+  <p>Assigned airports: <span class="red">{{num_airport}}</span></p>
+  <p>Airpots Area(km^2): <span class="red">{{area}}</span></p>
+  <p>Assigned hotels: <span class="red">{{num_hotel}}</span></p>
+  <p>Assigned 5-star hotels: <span class="red">{{num_5hotel}}</span></p>
+</div>
+
+<div class="chart-container" style="width:540px;height:240px" >
+  <canvas id="Linechart" ></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  new Chart(document.getElementById("Linechart"), {
+		type : 'line',
+		data : {
+			labels : {{date|tojson }},
+			datasets : [
+					{
+						data : {{price_f|tojson }},
+						label : "Price",
+						borderColor : "#A4F5F5",
+						fill : false
+					}]
+		},
+		options : {
+		plugins:{
+			title : {
+				display :true,
+				text: 'Average daily flight price',
+				color: 'white'
+			}
+
+}
+		}
+	});
+</script>
+
+
+<div class="bar" style="width:640px;height:240px">
+   <canvas id="bar-chart-grouped" width="900" height="450"></canvas>
+    </div>
+<script>
+    new Chart(document.getElementById("bar-chart-grouped"), {
+    type: 'bar',
+    data: {
+      labels: {{hid|tojson}},
+      datasets: [
+        {
+          label: "Age",
+          backgroundColor: "#3e95cd",
+          data: {{age|tojson}}
+        }, {
+          label: "Rank",
+          backgroundColor: "#8e5ea2",
+          data: {{rank|tojson}}
+        }
+      ]
+    },
+	options : {
+		plugins:{
+			title : {
+				display :true,
+				text: 'Summary of hotels'
+			}
+
+}
+		}
+	});
+</script>
+
+
+
+<div class="pie" style="width:640px;height:240px">
+<canvas id="doughnut-chart" width="800" height="450"></canvas>
+</div>
+<script>
+    new Chart(document.getElementById("doughnut-chart"), {
+    type: 'doughnut',
+    data: {
+      labels: {{gender|tojson}},
+      datasets: [
+        {
+          label: "Population",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+          data: {{num_gender|tojson}}
+        }
+      ]
+    },
+  	options : {
+		plugins:{
+			title : {
+				display :true,
+				text: 'Gender distribution of Customers'
+			}
+
+}
+		}
+	});
+</script>
+{%endblock%}

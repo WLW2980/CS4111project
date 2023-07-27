@@ -1,0 +1,79 @@
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #f2f2f2;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+.header {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.search-form {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+form {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+}
+
+label {
+	font-weight: bold;
+	margin-right: 10px;
+}
+
+input[type="number"],
+select {
+	margin-right: 20px;
+}
+
+input[type="number"] {
+	width: 60px;
+}
+
+input[type="submit"] {
+	background-color: #2196F3;
+	color: #fff;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.plane-animation {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	background-image: url('https://i.pinimg.com/originals/cc/a5/02/cca5022c86f67861746d7cf2eb486de8.gif');
+	background-position: center;
+	background-size: cover;
+	animation: plane-flying 60s linear infinite;
+}
+
+@keyframes plane-flying {
+	from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: -3000px 0;
+	}
+}
