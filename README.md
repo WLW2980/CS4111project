@@ -3,4 +3,4 @@ This is a web application aimed at providing customers with some recommendations
 AND four weak entities: Weather(Date,Temperature,Precipitation), 
 Preference(Travel Time,Budget……), Airport(Airport-ID,Location……), Hotel(Hotel-ID,Distance……). Types of relations may include: one to many, many to many, and total participation.
 
-Run the server on Google cloud using python3 k.py
+Run the server on Google cloud using k.py file 
